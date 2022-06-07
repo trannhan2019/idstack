@@ -1,0 +1,1 @@
+<template>Survey</template>
