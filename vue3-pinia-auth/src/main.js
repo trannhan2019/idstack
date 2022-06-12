@@ -2,8 +2,23 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import './index.css';
 import router from './router';
+import { createPinia } from 'pinia';
+import axios from 'axios';
 
-const app = createApp(App);
+import { useAuth } from './store/auth';
 
-app.use(router).mount('#app');
-// createApp(App).use(router).mount('#app');
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = 'http://localhost:8000/';
+
+(async () => {
+  const store = createPinia();
+  const app = createApp(App);
+
+  app.use(store);
+
+  const auth = useAuth();
+  await auth.getUser();
+
+  app.use(router);
+  app.mount('#app');
+})();

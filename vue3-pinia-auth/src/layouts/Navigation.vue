@@ -155,7 +155,7 @@ import {
   MenuItems,
 } from '@headlessui/vue';
 import { useRouter } from 'vue-router';
-// import { useAuth } from '../../store/auth';
+import { useAuth } from '../store/auth';
 const user = {
   name: 'Tom Cook',
   email: 'tom@example.com',
@@ -181,12 +181,12 @@ export default {
   },
   setup() {
     const router = useRouter();
-    // const auth = useAuth();
+    const auth = useAuth();
     const logout = async () => {
-      // await auth.logout();
-      // router.replace({
-      // 	name: 'Login',
-      // });
+      await auth.logout();
+      router.replace({
+        name: 'Login',
+      });
     };
     return {
       user,

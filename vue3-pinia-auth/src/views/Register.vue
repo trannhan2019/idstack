@@ -15,11 +15,7 @@
           Register
         </h2>
       </div>
-      <form
-        class="mt-8 space-y-6"
-        action="#"
-        @submit.prevent="register"
-      >
+      <form class="mt-8 space-y-6" @submit.prevent="register">
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="full-name" class="sr-only">Full Name</label>
@@ -104,9 +100,9 @@
 <script setup>
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
-// import { useAuth } from '../store/auth';
+import { useAuth } from '../store/auth';
 const router = useRouter();
-// const store = useAuth();
+const store = useAuth();
 const user = reactive({
   name: '',
   email: '',
@@ -114,10 +110,9 @@ const user = reactive({
   password_confirmation: '',
 });
 const register = async () => {
-  // await store.register(user);
-  // router.replace({
-  //   name: 'Dashboard',
-  // });
-  alert(`${user.email} and ${user.password}`);
+  await store.register(user);
+  router.replace({
+    name: 'Dashboard',
+  });
 };
 </script>

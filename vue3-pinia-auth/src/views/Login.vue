@@ -15,7 +15,7 @@
           Login
         </h2>
       </div>
-      <form class="mt-8 space-y-6" action="#" @submit.prevent="login">
+      <form class="mt-8 space-y-6" @submit.prevent="login">
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="email-address" class="sr-only"
@@ -84,18 +84,17 @@
 <script setup>
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
-// import { useAuth } from '../store/auth';
+import { useAuth } from '../store/auth';
 const router = useRouter();
-// const store = useAuth();
+const store = useAuth();
 const user = reactive({
   email: '',
   password: '',
 });
 const login = async () => {
-  //   await store.login(user);
-  //   router.replace({
-  //     name: 'Dashboard',
-  //   });
-  alert(`${user.email} and ${user.password}`);
+  await store.login(user);
+  router.replace({
+    name: 'Dashboard',
+  });
 };
 </script>
